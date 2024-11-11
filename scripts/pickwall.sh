@@ -23,7 +23,7 @@ switch() {
 		--transition-type grow --transition-angle 30 --transition-duration 2 \
 		--transition-pos "$cursorposx, $cursorposy_inverted"
   
-  matugen image $imgpath -t scheme-content
+  matugen image $imgpath -t scheme-tonal-spot
   kill -SIGUSR1 $(pidof kitty)
 }
 
