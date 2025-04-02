@@ -5,24 +5,14 @@ CONFIG_DIR="$XDG_CONFIG_HOME/ags"
 
 switch() {
 	imgpath=$1
-	read scale screenx screeny screensizey < <(hyprctl monitors -j | jq '.[] | select(.focused) | .scale, .x, .y, .height' | xargs)
-	cursorposx=$(hyprctl cursorpos -j | jq '.x' 2>/dev/null) || cursorposx=960
-	cursorposx=$(bc <<< "scale=0; ($cursorposx - $screenx) * $scale / 1")
-	cursorposy=$(hyprctl cursorpos -j | jq '.y' 2>/dev/null) || cursorposy=540
-	cursorposy=$(bc <<< "scale=0; ($cursorposy - $screeny) * $scale / 1")
-	cursorposy_inverted=$((screensizey - cursorposy))
-
 	if [ "$imgpath" == '' ]; then
 		echo 'Aborted'
 		exit 0
 	fi
 
-	# ags run-js "wallpaper.set('')"
-	# sleep 0.1 && ags run-js "wallpaper.set('${imgpath}')" &
 	swww img "$imgpath" --transition-step 100 --transition-fps 120 \
-		--transition-type grow --transition-angle 30 --transition-duration 2 \
-		--transition-pos "$cursorposx, $cursorposy_inverted"
-  
+	 --transition-duration 2 \
+
   matugen image $imgpath -t scheme-tonal-spot
   kill -SIGUSR1 $(pidof kitty)
 }
