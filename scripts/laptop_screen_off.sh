@@ -6,4 +6,4 @@ powerprofilesctl set performance
 
 sleep 2
 
-notify-send -a "System Notification" "Docked Mode Enabled"
+notify-send -a "System Notification" "Docked Mode Enabled" "The internal display is turned off."
