@@ -10,8 +10,7 @@ switch() {
 		exit 0
 	fi
 
-	swww img "$imgpath" --transition-step 100 --transition-fps 120 \
-	 --transition-duration 2 \
+	swww img "$imgpath"
 
   matugen image $imgpath -t scheme-tonal-spot
   kill -SIGUSR1 $(pidof kitty)
